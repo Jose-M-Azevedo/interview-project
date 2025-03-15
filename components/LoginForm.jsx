@@ -5,14 +5,19 @@ import { useRouter } from "next/navigation";
 import { login } from "../lib";
 
 export default function LoginForm() {
+  // Variável state para armazenar a mensagem de erro
   const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
 
+  // Form submission
   async function handleSubmit(event) {
     event.preventDefault();
+    // Obeter os dados do form
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
+    // Chamar a função login de lib.js
+    // Passar os dados do form, o state setErrorMessage e o router
     await login(data, setErrorMessage, router);
   }
 
